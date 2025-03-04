@@ -29,6 +29,9 @@ main .left, main .right{
 main .left {
   background-color: black;
   position: relative;
+  overflow: auto;
+  border: 0.1rem solid whitesmoke;
+
 }
 .left .code,
 .left .code pre,
@@ -38,30 +41,72 @@ main .left {
   margin: 0 ; 
   padding: 0 ; 
   border-radius: 1rem;
-  background-color: rgb(23, 23, 23);
+  background-color: #030637;
+  overflow: auto;
+  border: 0.1rem solid whitesmoke;
+  
 }
 
-main .left .review{
-position: absolute;
-bottom: 1rem;
-right: 1rem;
-background-color:#F5B7B1 ;
-color: rgb(86, 71, 52);
-font-weight: 500;
-cursor: pointer;
-padding: 0.5rem 2rem;
-border-radius: 1rem;
-user-select: none;
+main .left .review {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: #910A67; /* Updated background color */
+  color: white; /* Changed text color to white for better contrast */
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem 2rem;
+  border-radius: 1rem;
+  user-select: none;
+  transition: all 0.3s ease; /* Added smooth transition */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added subtle shadow */
+  border: 0.1rem solid whitesmoke;
 }
-main .left .review:hover{
-  background-color: rgb(104, 103, 103);
+
+main .left .review:hover {
+  background-color: #3C0753; /* Darker blue on hover */
+  color: white; /* Ensure text remains white on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover */
 }
 
 
 main .right {
-  background-color:rgb(56, 48, 38);
+  background-color: #3C0753;
   padding: 1rem 3rem;
   font-size: 1.1rem;
   overflow: auto;
-  border: 0.1rem solid rgb(172, 172, 144);
+  border: 0.2rem solid #910A67;
+  position: relative;
+}
+
+main .right.loading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(56, 48, 38, 0.8);
+  z-index: 10;
+}
+
+main .right.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(172, 172, 144, 0.2);
+  border-top: 5px solid rgb(248, 248, 238);
+  border-radius: 50%;
+  z-index: 11;
+  transform: translate(-50%, -50%);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
